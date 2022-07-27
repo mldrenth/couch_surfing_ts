@@ -1,5 +1,6 @@
 import { showReviewTotal, populateUser, populateProperties } from "./utils"
 let isOpen: boolean
+const footer = document.querySelector('.footer')
 
 // Reviews
 const reviews: { name: string, stars: number, loyaltyUser: boolean, date: string }[] = [
@@ -49,7 +50,7 @@ const properties: {
         postcode: number,
         country: string,
     }
-    contanctDetails: string,
+    contanctDetails: [number, string],
     isAvailable: boolean
 }[] = [{
     image: 'images/colombia-property.jpg',
@@ -61,7 +62,7 @@ const properties: {
         postcode: 45632,
         country: 'Colombia'
     },
-    contanctDetails: 'marywinkle@gmail.com',
+    contanctDetails: [+1123495082908, 'marywinkle@gmail.com'],
     isAvailable: true  
 },
 {
@@ -74,7 +75,7 @@ const properties: {
         postcode: 343903,
         country: 'Poland'
     },
-    contanctDetails: 'garydavis@hotmail.com',
+    contanctDetails: [+1123495082908,'garydavis@hotmail.com'],
     isAvailable: false 
 },{
     image: 'images/london-property.jpg',
@@ -86,7 +87,7 @@ const properties: {
         postcode: 35433,
         country: 'United Kingdom',
     },
-    contanctDetails: 'andyluger@aol.com',
+    contanctDetails: [+1123495082908,'andyluger@aol.com'],
     isAvailable: true
 }]
 
@@ -97,3 +98,6 @@ showReviewTotal(reviews.length, reviews[0].name, reviews[0].loyaltyUser)
 populateUser(you.isReturning, you.firstName)
 
 populateProperties(properties)
+
+let currentLocation: [string, string, number] = ["Thessaloniki", "11:35", 30]
+footer.innerHTML = currentLocation[0] + " " + currentLocation[1] + " " + currentLocation[2] + "°"

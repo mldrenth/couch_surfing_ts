@@ -25,11 +25,10 @@ export function populateProperties(properties: {
         postcode: number,
         country: string,
     }
-    contanctDetails: string,
+    contanctDetails: [number,string],
     isAvailable: boolean
 }[]) {
     for (const property of properties) {
-        console.log(property)
         const card = document.createElement('div')
         card.classList.add('card')
         card.innerHTML = property.title
