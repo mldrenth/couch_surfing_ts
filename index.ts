@@ -1,5 +1,6 @@
 import { showReviewTotal, populateUser, populateProperties, showDetails } from "./utils"
 import { Permissions, LoyaltyType } from './enums'
+import { Price, Country } from './types'
 let isOpen: boolean
 let isLoggedIn: boolean
 const footer = document.querySelector('.footer')
@@ -55,16 +56,17 @@ const you = {
     stayedAt: ['florida-home', 'oman-flat', 'tokyo-bungalow']
 }
 
+
 // Properties
 const properties: {
     image: string,
     title: string,
-    pricePerNight: number,
+    pricePerNight: Price,
     location: {
         address1: string,
         city: string,
         postcode: number,
-        country: string,
+        country: Country,
     }
     contanctDetails: [number, string],
     isAvailable: boolean
@@ -84,7 +86,7 @@ const properties: {
 {
     image: 'images/poland-property.jpg',
     title: 'Polish Cottage',
-    pricePerNight: 34,
+    pricePerNight: 30,
     location: {
         address1: 'no 23',
         city: 'Gdansk',
@@ -96,7 +98,7 @@ const properties: {
 },{
     image: 'images/london-property.jpg',
     title: 'London Flat',
-    pricePerNight: 23,
+    pricePerNight: 25,
     location: {
         address1: 'flat 15',
         city: 'London',
