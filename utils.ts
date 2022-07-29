@@ -4,6 +4,8 @@ const returningUserDisplay = document.querySelector('#returning-user')
 const userNameDisplay = document.querySelector('#user')
 const reviewTotalDisplay = document.querySelector('#reviews')
 const propertyContainer = document.querySelector('.properties')
+let authorityStatus : any
+let isLoggedIn = true;
 
 export function showReviewTotal(value: number, reviewer: string, loyalty: LoyaltyType) {
     const iconDisplay = loyalty === LoyaltyType.GOLD_USER ? '⭐' : ''
@@ -38,5 +40,14 @@ export function populateProperties(properties: {
         image.setAttribute('src', property.image)
         card.appendChild(image)
         propertyContainer.appendChild(card)
+        showDetails(isLoggedIn, card, property.pricePerNight)
     }
 }
+
+export function showDetails(authorityStatus: boolean | Permissions, element : HTMLDivElement, price: number) {
+    if (authorityStatus) {
+        const priceDisplay = document.createElement('div')
+        priceDisplay.innerHTML = price.toString() + '/night'
+        element.appendChild(priceDisplay)
+    }
+ }

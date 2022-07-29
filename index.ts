@@ -1,6 +1,7 @@
-import { showReviewTotal, populateUser, populateProperties } from "./utils"
+import { showReviewTotal, populateUser, populateProperties, showDetails } from "./utils"
 import { Permissions, LoyaltyType } from './enums'
 let isOpen: boolean
+let isLoggedIn: boolean
 const footer = document.querySelector('.footer')
 
 // Reviews
