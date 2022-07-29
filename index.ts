@@ -1,40 +1,54 @@
 import { showReviewTotal, populateUser, populateProperties } from "./utils"
+import { Permissions, LoyaltyType } from './enums'
 let isOpen: boolean
 const footer = document.querySelector('.footer')
 
 // Reviews
-const reviews: { name: string, stars: number, loyaltyUser: boolean, date: string }[] = [
+const reviews: { name: string, stars: number, loyaltyUser: LoyaltyType, date: string }[] = [
     {
         name: 'Sheia',
         stars: 5,
-        loyaltyUser: true,
+        loyaltyUser: LoyaltyType.GOLD_USER,
         date: '01-04-2021'
     },
     {
         name: 'Andrzej',
         stars: 3,
-        loyaltyUser: false,
+        loyaltyUser: LoyaltyType.BRONZE_USER,
         date: '28-03-2021'
     },
     {
         name: 'Omar',
         stars: 4,
-        loyaltyUser: true,
+        loyaltyUser: LoyaltyType.SILVER_USER,
         date: '27-03-2021'
     },
 ]
 
 // User
-const you: {
-    firstName: string,
-    lastName: string,
-    age: number
-    isReturning: boolean,
-    stayedAt: string[];
-} = {
+// const you: {
+//     firstName: string,
+//     lastName: string,
+//     age: number
+//     isReturning: boolean,
+//     stayedAt: string[];
+// } = {
+//     firstName: 'Bobby',
+//     lastName: 'Brown',
+//     age: 23,
+//     isReturning: true,
+//     stayedAt: ['florida-home', 'oman-flat', 'tokyo-bungalow']
+// }
+const ADMIN = 'admin'
+const READ_ONLY = 'read-only'
+
+
+
+const you = {
     firstName: 'Bobby',
     lastName: 'Brown',
     age: 23,
+    permissions: Permissions.ADMIN,
     isReturning: true,
     stayedAt: ['florida-home', 'oman-flat', 'tokyo-bungalow']
 }
