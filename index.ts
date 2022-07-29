@@ -1,12 +1,17 @@
-import { showReviewTotal, populateUser, populateProperties, showDetails } from "./utils"
+import { showReviewTotal, populateUser, populateProperties, showDetails, getTopTwoReviews } from "./utils"
 import { Permissions, LoyaltyType } from './enums'
 import { Price, Country } from './types'
+import {Review} from './interfaces'
+
 let isOpen: boolean
 let isLoggedIn: boolean
 const footer = document.querySelector('.footer')
+const button = document.querySelector('button')
+const reviewContainer = document.querySelector('.reviews')
+const container = document.querySelector('.container')
 
 // Reviews
-const reviews: ({ name: string, stars: number, loyaltyUser: LoyaltyType, date: string } | { name: string, stars: number, loyaltyUser: LoyaltyType, date: string, description: string })[] = [
+const reviews: Review[] = [
     {
         name: 'Sheia',
         stars: 5,
@@ -24,7 +29,6 @@ const reviews: ({ name: string, stars: number, loyaltyUser: LoyaltyType, date: s
         stars: 4,
         loyaltyUser: LoyaltyType.SILVER_USER,
         date: '27-03-2021',
-        description: 'Great hosts, location was a bit further than said'
     },
 ]
 
@@ -116,6 +120,23 @@ showReviewTotal(reviews.length, reviews[0].name, reviews[0].loyaltyUser)
 populateUser(you.isReturning, you.firstName)
 
 populateProperties(properties)
+
+let count = 0
+function addReviews(array: Review[]){
+    if (!count ) {
+        count++
+        const topTwo = getTopTwoReviews(array)
+        for (let i = 0; i < topTwo.length; i++) {
+            const card = document.createElement('div')
+            card.classList.add('review-card')
+            card.innerHTML = topTwo[i].stars + ' stars from ' + topTwo[i].name
+            reviewContainer.appendChild(card)
+        }
+        container.removeChild(button) 
+    }
+}
+
+button.addEventListener('click', () => addReviews(reviews))
 
 let currentLocation: [string, string, number] = ["Thessaloniki", "11:35", 30]
 footer.innerHTML = currentLocation[0] + " " + currentLocation[1] + " " + currentLocation[2] + "°"
