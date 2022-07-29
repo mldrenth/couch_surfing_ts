@@ -1,8 +1,8 @@
 import { showReviewTotal, populateUser, populateProperties, showDetails, getTopTwoReviews } from "./utils"
 import { Permissions, LoyaltyType } from './enums'
 import { Price, Country } from './types'
-import {Review, Property} from './interfaces'
-import {MainProperty} from './classes'
+import { Review, Property } from './interfaces'
+import { MainProperty } from './classes'
 
 let isOpen: boolean
 let isLoggedIn: boolean
@@ -75,7 +75,7 @@ const properties: Property[] = [{
         country: 'Colombia'
     },
     contanctDetails: [+1123495082908, 'marywinkle@gmail.com'],
-    isAvailable: true  
+    isAvailable: true
 },
 {
     image: 'images/poland-property.jpg',
@@ -87,9 +87,9 @@ const properties: Property[] = [{
         postcode: 343903,
         country: 'Poland'
     },
-    contanctDetails: [+1123495082908,'garydavis@hotmail.com'],
-    isAvailable: false 
-},{
+    contanctDetails: [+1123495082908, 'garydavis@hotmail.com'],
+    isAvailable: false
+}, {
     image: 'images/london-property.jpg',
     title: 'London Flat',
     pricePerNight: 25,
@@ -99,9 +99,21 @@ const properties: Property[] = [{
         postcode: 'SW4 5XW',
         country: 'United Kingdom',
     },
-    contanctDetails: [+1123495082908,'andyluger@aol.com'],
+    contanctDetails: [+1123495082908, 'andyluger@aol.com'],
     isAvailable: true
-}]
+}, {
+    image: 'images/malaysia-property.jpg',
+    title: 'Malia Hotel',
+    pricePerNight: 35,
+    location: {
+        address1: 'Room 4',
+        city: 'Malia',
+        postcode: 45334,
+        country: 'Malaysia'
+    },
+    contanctDetails: [+60349822083, 'lee34@gmail.com'],
+    isAvailable: false
+},]
 
 
 // Functions
@@ -112,8 +124,8 @@ populateUser(you.isReturning, you.firstName)
 populateProperties(properties)
 
 let count = 0
-function addReviews(array: Review[]){
-    if (!count ) {
+function addReviews(array: Review[]) {
+    if (!count) {
         count++
         const topTwo = getTopTwoReviews(array)
         for (let i = 0; i < topTwo.length; i++) {
@@ -122,7 +134,7 @@ function addReviews(array: Review[]){
             card.innerHTML = topTwo[i].stars + ' stars from ' + topTwo[i].name
             reviewContainer.appendChild(card)
         }
-        container.removeChild(button) 
+        container.removeChild(button)
     }
 }
 
@@ -131,7 +143,7 @@ button.addEventListener('click', () => addReviews(reviews))
 let currentLocation: [string, string, number] = ["Thessaloniki", "11:35", 30]
 footer.innerHTML = currentLocation[0] + " " + currentLocation[1] + " " + currentLocation[2] + "°"
 
-let yourMainProperty = new MainProperty('Italian Property','images/italian-property.jpg', reviews )
+let yourMainProperty = new MainProperty('Italian Property', 'images/italian-property.jpg', reviews)
 
 const image = document.createElement('img')
 image.setAttribute('src', yourMainProperty.src)
