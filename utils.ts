@@ -1,5 +1,5 @@
 import { LoyaltyType } from './enums'
-import {Review} from './interfaces'
+import {Review, Property} from './interfaces'
 
 const returningUserDisplay = document.querySelector('#returning-user')
 const userNameDisplay = document.querySelector('#user')
@@ -20,19 +20,7 @@ export function populateUser(isReturning: boolean, userName: string) {
     userNameDisplay.innerHTML = userName
 }
 
-export function populateProperties(properties: {
-    image: string,
-    title: string,
-    pricePerNight: number,
-    location: {
-        address1: string,
-        city: string,
-        postcode: number,
-        country: string,
-    }
-    contanctDetails: [number,string],
-    isAvailable: boolean
-}[]) {
+export function populateProperties(properties: Property[]) {
     for (const property of properties) {
         const card = document.createElement('div')
         card.classList.add('card')

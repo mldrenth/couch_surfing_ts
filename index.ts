@@ -1,7 +1,8 @@
 import { showReviewTotal, populateUser, populateProperties, showDetails, getTopTwoReviews } from "./utils"
 import { Permissions, LoyaltyType } from './enums'
 import { Price, Country } from './types'
-import {Review} from './interfaces'
+import {Review, Property} from './interfaces'
+import {MainProperty} from './classes'
 
 let isOpen: boolean
 let isLoggedIn: boolean
@@ -9,6 +10,7 @@ const footer = document.querySelector('.footer')
 const button = document.querySelector('button')
 const reviewContainer = document.querySelector('.reviews')
 const container = document.querySelector('.container')
+const mainImageContainer = document.querySelector('.main-image')
 
 // Reviews
 const reviews: Review[] = [
@@ -62,19 +64,7 @@ const you = {
 
 
 // Properties
-const properties: {
-    image: string,
-    title: string,
-    pricePerNight: Price,
-    location: {
-        address1: string,
-        city: string,
-        postcode: number,
-        country: Country,
-    }
-    contanctDetails: [number, string],
-    isAvailable: boolean
-}[] = [{
+const properties: Property[] = [{
     image: 'images/colombia-property.jpg',
     title: 'Colombian Shack',
     pricePerNight: 45,
@@ -106,7 +96,7 @@ const properties: {
     location: {
         address1: 'flat 15',
         city: 'London',
-        postcode: 35433,
+        postcode: 'SW4 5XW',
         country: 'United Kingdom',
     },
     contanctDetails: [+1123495082908,'andyluger@aol.com'],
@@ -140,3 +130,9 @@ button.addEventListener('click', () => addReviews(reviews))
 
 let currentLocation: [string, string, number] = ["Thessaloniki", "11:35", 30]
 footer.innerHTML = currentLocation[0] + " " + currentLocation[1] + " " + currentLocation[2] + "°"
+
+let yourMainProperty = new MainProperty('Italian Property','images/italian-property.jpg', reviews )
+
+const image = document.createElement('img')
+image.setAttribute('src', yourMainProperty.src)
+mainImageContainer.appendChild(image)
